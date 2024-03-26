@@ -45,9 +45,11 @@ const SignUp = ({navigation}) => {
       .post('https://chat-app-pn6s.onrender.com/register', user)
       .then(response => {
         console.log(JSON.stringify(response.data));
+        Alert.alert('ho gya');
       })
       .catch(error => {
         console.log(error);
+        Alert.alert('nhi hua');
       });
   };
   // useEffect(() => {
