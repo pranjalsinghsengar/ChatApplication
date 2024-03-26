@@ -17,14 +17,17 @@ const SignIn = ({navigation}) => {
     axios
       .post('https://chat-app-pn6s.onrender.com/login', user)
       .then(response => {
-        console.log('signIN user', JSON.stringify(response.data));
+        console.log('signIn user', JSON.stringify(response.data));
       })
-      .catch(err => console.log('error', err));
+      .catch(err => {
+        console.log('error', err);
+        // Handle the error appropriately, e.g., show an error message
+      });
   };
 
   return (
     <View style={[styles.container]}>
-      <KeyboardAvoidingView>
+      <KeyboardAvoidingView behavior="padding" style={{flex: 1}}>
         <TextInput
           label="Email"
           value={email}
@@ -46,7 +49,7 @@ const SignIn = ({navigation}) => {
             styles.itemsCenter,
           ]}>
           <TouchableOpacity onPress={() => navigation.navigate('signup')}>
-            <Text>don't have account</Text>
+            <Text>Don't have an account?</Text>
           </TouchableOpacity>
           <Button mode="contained" onPress={handleSignIn} style={styles.button}>
             Sign In
@@ -56,21 +59,5 @@ const SignIn = ({navigation}) => {
     </View>
   );
 };
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     padding: 20,
-//     justifyContent: 'center',
-//   },
-//   input: {
-//     marginBottom: 20,
-//     borderWidth: 1,
-//     borderColor: 'black',
-//   },
-//   button: {
-//     marginTop: 20,
-//   },
-// });
 
 export default SignIn;
