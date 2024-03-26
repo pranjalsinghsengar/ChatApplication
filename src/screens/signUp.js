@@ -19,19 +19,19 @@ const SignUp = ({navigation}) => {
   // const [confirmPassword, setConfirmPassword] = useState('');
 
   const handleSignUp = async () => {
-    const user = {
+    // const user = {
+    //   name: name,
+    //   email: email,
+    //   password: password,
+    //   image: image,
+    // };
+    // console.log(user);
+
+    let data = JSON.stringify({
       name: name,
       email: email,
       password: password,
       image: image,
-    };
-    // console.log(user);
-
-    let data = JSON.stringify({
-      name: 'dasdsasda',
-      email: 'tdasdft@gmail.com',
-      password: 'sadasd3',
-      image: 'dumasdasdmy Image',
     });
 
     let config = {
@@ -42,7 +42,7 @@ const SignUp = ({navigation}) => {
     };
 
     axios
-      .post('https://chat-app-pn6s.onrender.com/register', user)
+      .request(config)
       .then(response => {
         console.log(JSON.stringify(response.data));
         Alert.alert('ho gya');

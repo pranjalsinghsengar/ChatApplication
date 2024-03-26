@@ -14,7 +14,12 @@ const SignIn = ({navigation}) => {
       password: password,
     };
 
-    axios.post('https://chat-app-pn6s.onrender.com/login');
+    axios
+      .post('https://chat-app-pn6s.onrender.com/login', user)
+      .then(response => {
+        console.log('signIN user', JSON.stringify(response.data));
+      })
+      .catch(err => console.log('error', err));
   };
 
   return (
