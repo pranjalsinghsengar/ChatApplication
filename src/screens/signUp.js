@@ -19,33 +19,18 @@ const SignUp = ({navigation}) => {
   // const [confirmPassword, setConfirmPassword] = useState('');
 
   const handleSignUp = async () => {
-    // const user = {
-    //   name: name,
-    //   email: email,
-    //   password: password,
-    //   image: image,
-    // };
-    // console.log(user);
-
-    let data = JSON.stringify({
+    const user = {
       name: name,
       email: email,
       password: password,
       image: image,
-    });
-
-    let config = {
-      method: 'post',
-      maxBodyLength: Infinity,
-      url: 'https://chat-app-pn6s.onrender.com/register',
-      data: data,
     };
-
     axios
-      .request(config)
+      .post('https://chat-app-pn6s.onrender.com/register', user)
       .then(response => {
         console.log(JSON.stringify(response.data));
         Alert.alert('ho gya');
+        navigation.navigate('signin');
       })
       .catch(error => {
         console.log(error);

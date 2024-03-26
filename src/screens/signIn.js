@@ -1,5 +1,10 @@
 import React, {useState} from 'react';
-import {View, TouchableOpacity, KeyboardAvoidingView} from 'react-native';
+import {
+  View,
+  TouchableOpacity,
+  KeyboardAvoidingView,
+  Alert,
+} from 'react-native';
 import {TextInput, Button, Text} from 'react-native-paper';
 import {styles} from '../styles/style';
 import axios from 'axios';
@@ -17,17 +22,21 @@ const SignIn = ({navigation}) => {
     axios
       .post('https://chat-app-pn6s.onrender.com/login', user)
       .then(response => {
-        console.log('signIn user', JSON.stringify(response.data));
+        console.log('signIn user', response.data);
+        // Alert.alert('data', response.data);
+        navigation.navigate('home');
       })
       .catch(err => {
         console.log('error', err);
+        Alert.alert('error', err);
+
         // Handle the error appropriately, e.g., show an error message
       });
   };
 
   return (
     <View style={[styles.container]}>
-      <KeyboardAvoidingView behavior="padding" style={{flex: 1}}>
+      <KeyboardAvoidingView>
         <TextInput
           label="Email"
           value={email}

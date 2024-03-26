@@ -90,9 +90,9 @@ app.post('/login', (req, res) => {
       if (user.password !== password) {
         return res.status(404).json({message: 'invalid password'});
       }
-      res.status(200).json({message: 'user found', user});
-      // const token = createToken(user._id);
-      // res.status(200).json({token: token});
+      // res.status(200).json({message: 'user found', user});
+      const token = createToken(user._id);
+      res.status(200).json({token: token});
     })
     .catch(err => {
       console.log('err in finding user', err);
