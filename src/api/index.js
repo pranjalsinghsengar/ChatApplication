@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -26,7 +27,9 @@ mongoose
   });
 
 app.listen(port, () => {
-  console.log('server listening on port', port);
+  app.listen(process.env.PORT || 8000, () => {
+    console.log('server listening on port', port);
+  });
 });
 
 const User = require('./models/users');
