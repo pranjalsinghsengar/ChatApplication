@@ -26,8 +26,6 @@ mongoose
     console.log('err in mongodb', err);
   });
 
-app.listen(process.env.PORT || 5000, () => {
-  console.log('server listening on port', port);
 app.listen(port, () => {
   app.listen(process.env.PORT || 5000, () => {
     console.log('server listening on port', port);
@@ -57,7 +55,7 @@ app.post('/register', async (req, res) => {
     .then(() => {
       res.status(200).json({
         massage: 'user registered ssdfuccessfully',
-        user: {_id, name, email, password, image},
+        user: { name, email, password, image},
       });
     })
     .catch(err => {
