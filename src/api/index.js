@@ -42,7 +42,6 @@ app.post('/register', async (req, res) => {
 
   //   create new user
   const newUser = new User({
-    _id,
     name,
     email,
     password,
@@ -56,7 +55,7 @@ app.post('/register', async (req, res) => {
     .then(() => {
       res.status(200).json({
         massage: 'user registered ssdfuccessfully',
-        user: {name, email, password, image},
+        user: {_id, name, email, password, image},
       });
     })
     .catch(err => {
