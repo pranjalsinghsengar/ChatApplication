@@ -2,14 +2,19 @@ import React, {useState} from 'react';
 import {View, TouchableOpacity, KeyboardAvoidingView} from 'react-native';
 import {TextInput, Button, Text} from 'react-native-paper';
 import {styles} from '../styles/style';
+import axios from 'axios';
 
 const SignIn = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSignIn = () => {
-    console.log('Email:', email);
-    console.log('Password:', password);
+    const user = {
+      email: email,
+      password: password,
+    };
+
+    axios.post('https://chat-app-pn6s.onrender.com/login');
   };
 
   return (
