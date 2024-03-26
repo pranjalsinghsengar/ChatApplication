@@ -27,7 +27,7 @@ mongoose
   });
 
 app.listen(port, () => {
-  app.listen(process.env.PORT || 8000, () => {
+  app.listen(process.env.PORT || 5000, () => {
     console.log('server listening on port', port);
   });
 });
@@ -41,7 +41,13 @@ app.post('/register', async (req, res) => {
   const {name, email, password, image} = req.body;
 
   //   create new user
-  const newUser = new User({name, email, password, image});
+  const newUser = new User({
+    _id,
+    name,
+    email,
+    password,
+    image,
+  });
 
   // save the user to the database
 

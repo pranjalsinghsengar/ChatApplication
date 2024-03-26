@@ -37,12 +37,12 @@ const SignUp = ({navigation}) => {
     let config = {
       method: 'post',
       maxBodyLength: Infinity,
-      url: 'http://localhost:8000/register',
+      url: 'https://chat-app-pn6s.onrender.com/register',
       data: data,
     };
 
     axios
-      .get('http://localhost:8000/register', data)
+      .post('https://chat-app-pn6s.onrender.com/register', user)
       .then(response => {
         console.log(JSON.stringify(response.data));
       })
