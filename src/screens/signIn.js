@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {
   View,
   TouchableOpacity,
@@ -8,30 +8,48 @@ import {
 import {TextInput, Button, Text} from 'react-native-paper';
 import {styles} from '../styles/style';
 import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {Storage} from '../context/storage';
+// import {AsyncStorage} from 'react-native';
 
 const SignIn = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const {user} = useContext(Storage);
 
-  const handleSignIn = () => {
-    const user = {
+  useEffect(() => {
+    if (user) {
+      navigation.navigate('home');
+    } else {
+      navigation.navigate('signin');
+    }
+  }, [user]);
+
+  const handleSignIn = async () => {
+    // const axios = require('axios');
+    let data = JSON.stringify({
       email: email,
       password: password,
+    });
+
+    let config = {
+      method: 'post',
+      maxBodyLength: Infinity,
+      url: 'https://chat-backend-mreh.onrender.com/signin',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      data: data,
     };
 
-    axios
-      .post('https://chat-app-pn6s.onrender.com/login', user)
-      .then(response => {
-        console.log('signIn user', response.data);
-        // Alert.alert('data', response.data);
-        navigation.navigate('home');
-      })
-      .catch(err => {
-        console.log('error', err);
-        Alert.alert('error', err);
+    const res = await axios.request(config);
+    console.log('response.data', JSON.stringify(res.data));
+    const jsonValue = JSON.stringify(res.data);
 
-        // Handle the error appropriately, e.g., show an error message
-      });
+    if (jsonValue) {
+      AsyncStorage.setItem('userData', jsonValue);
+      navigation.navigate('home');
+    }
   };
 
   return (

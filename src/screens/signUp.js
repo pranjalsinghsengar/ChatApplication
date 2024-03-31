@@ -26,7 +26,7 @@ const SignUp = ({navigation}) => {
       image: image,
     };
     axios
-      .post('https://chat-app-pn6s.onrender.com/register', user)
+      .post('https://chat-backend-mreh.onrender.com/', user)
       .then(response => {
         console.log(JSON.stringify(response.data));
         Alert.alert('ho gya');
