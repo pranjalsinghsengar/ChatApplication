@@ -8,6 +8,8 @@ export const Storage = createContext();
 const StorageProvider = ({children}) => {
   const navigation = useNavigation();
   const [user, setUser] = useState();
+  const [userID, setUserID] = useState();
+
   const [allUsers, setAllUsers] = useState();
   const [openCard, setOpenCard] = useState();
 
@@ -15,7 +17,11 @@ const StorageProvider = ({children}) => {
     userData();
     ALLUserData();
   }, []);
-
+  useEffect(() => {
+    if (user) {
+      setUserID(user ? user._id : null);
+    }
+  }, [user]);
   const userData = async () => {
     try {
       const jsonValue = await AsyncStorage.getItem('userData');
@@ -25,6 +31,8 @@ const StorageProvider = ({children}) => {
       // error reading value
     }
   };
+
+  console.log('====> USER__ID', userID);
 
   const ALLUserData = () => {
     let data = '';
@@ -40,7 +48,7 @@ const StorageProvider = ({children}) => {
     axios
       .request(config)
       .then(response => {
-        console.log(JSON.stringify(response.data));
+        // console.log(JSON.stringify(response.data));
         setAllUsers(response.data);
       })
       .catch(error => {
@@ -51,7 +59,7 @@ const StorageProvider = ({children}) => {
   // console.log('user', user);
   // console.log('allUsers', allUsers);
   return (
-    <Storage.Provider value={{allUsers, user, openCard, setOpenCard}}>
+    <Storage.Provider value={{allUsers, user, userID, openCard, setOpenCard}}>
       {children}
     </Storage.Provider>
   );

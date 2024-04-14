@@ -9,6 +9,7 @@ import Storage from '../context/storage';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import StorageProvider from '../context/storage';
 import Friends from '../screens/friendList';
+import FriendRequests from '../screens/friendRequests';
 
 const StackNavigation = () => {
   const Stack = createNativeStackNavigator();
@@ -35,6 +36,11 @@ const StackNavigation = () => {
           <Stack.Screen
             name="friends"
             component={Friends}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="friendrequests"
+            component={FriendRequests}
             options={{headerShown: false}}
           />
         </Stack.Navigator>

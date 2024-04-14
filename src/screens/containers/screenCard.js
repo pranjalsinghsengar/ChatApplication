@@ -38,6 +38,7 @@ const ScreenCard = ({children}) => {
           minHeight: '50%',
           maxHeight: '70%',
           backgroundColor: 'white',
+          paddingBottom: 50,
         }}>
         {children}
 
@@ -48,11 +49,11 @@ const ScreenCard = ({children}) => {
             bottom: 0,
             right: 0,
             margin: 10,
-            padding: 10,
-            paddingHorizontal: 15,
+            padding: 0,
+            paddingHorizontal: 5,
             borderRadius: 5,
             borderWidth: 1,
-            // backgroundColor: 'orange',
+            backgroundColor: 'white',
           }}>
           <Text>X</Text>
         </TouchableOpacity>

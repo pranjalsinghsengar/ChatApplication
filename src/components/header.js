@@ -102,7 +102,7 @@ const Header = () => {
           }}
         />
         <Text style={{color: 'black', marginHorizontal: 20}}>
-          {userDetails && userDetails.name} x unknown
+          {userDetails && userDetails.name} x Ai
         </Text>
       </View>
 
